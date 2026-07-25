@@ -1,1 +1,2 @@
-FastDL
+DownloadURL
+CS.LEAGUECS.RO
