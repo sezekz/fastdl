@@ -1,2 +1,0 @@
-DownloadURL
-CS.LEAGUECS.RO
