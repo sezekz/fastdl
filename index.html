@@ -3,55 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS.LEAGUECS.RO - FastDL Node</title>
+    <title>CS.LEAGUECS.RO - FastDL Network</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f111a;
-            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0a0b10;
+            background-image: radial-gradient(circle at 50% 50%, #151828 0%, #0a0b10 100%);
+            color: #eeeeee;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
-        .container {
+        .cyber-box {
             text-align: center;
-            background: #1a1d29;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            border: 1px solid #2a2f45;
+            background: rgba(20, 22, 37, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 74, 74, 0.05);
+            border: 1px solid rgba(255, 74, 74, 0.15);
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+        }
+        .cyber-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff4a4a, transparent);
+            box-shadow: 0 0 10px #ff4a4a;
         }
         h1 {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        h1 span {
             color: #ff4a4a;
-            margin-bottom: 10px;
-            font-size: 28px;
+            text-shadow: 0 0 10px rgba(255, 74, 74, 0.5);
+        }
+        .tagline {
+            color: #8a8f9d;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .badge-container {
+            margin-bottom: 30px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(82, 183, 136, 0.1);
+            border: 1px solid rgba(82, 183, 136, 0.3);
+            color: #52b788;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(82, 183, 136, 0.1);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #52b788;
+            border-radius: 50%;
+            animation: pulse 1.8s infinite;
+        }
+        .footer-credits {
+            font-size: 12px;
+            color: #4f5366;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-top: 10px;
         }
-        p {
-            color: #a0a5c0;
-            font-size: 16px;
+        .footer-credits span {
+            color: #ff4a4a;
+            font-weight: 600;
         }
-        .status {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: #1b4332;
-            color: #52b788;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.7); }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(82, 183, 136, 0); }
+            100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(82, 183, 136, 0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>CS.LEAGUECS.RO</h1>
-        <p>Nod HTTP de descărcare rapidă a resurselor (FastDL) securizat prin GitHub Cloud.</p>
-        <div class="status">● Server Online & Securizat</div>
+
+    <div class="cyber-box">
+        <h1>CS.LEAGUECS.RO <span>#CLASSIC</span></h1>
+        
+        <p class="tagline">
+            Nod regional securizat pentru descărcarea ultra-rapidă a resurselor (FastDL). Hărțile, modelele și sunetele se descarcă instantaneu prin infrastructura GitHub Cloud de mare viteză.
+        </p>
+        
+        <div class="badge-container">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Server Online & Securizat
+            </div>
+        </div>
+        
+        <div class="footer-credits">
+            Powered by <span>sezekz</span>
+        </div>
     </div>
+
 </body>
 </html>
