@@ -1,0 +1,17 @@
+gfx/env/52h03bk.tga
+gfx/env/52h03dn.tga
+gfx/env/52h03ft.tga
+gfx/env/52h03lf.tga
+gfx/env/52h03rt.tga
+gfx/env/52h03up.tga
+sound/35hp_jingle-bells/jinglebells_song.wav
+models/35hp_jingle-bells/antorcha1.mdl
+models/35hp_jingle-bells/hoguera1.mdl
+models/35hp_jingle-bells/navidad_tree.mdl
+models/35hp_jingle-bells/regalo1.mdl
+models/35hp_jingle-bells/regalo2.mdl
+models/35hp_jingle-bells/snow_tree.mdl
+models/35hp_jingle-bells/snowman.mdl
+sprites/kzblt_flame.spr
+maps/35hp_jingle-bells.res
+maps/35hp_jingle-bells.txt
