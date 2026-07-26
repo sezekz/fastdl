@@ -1,0 +1,18 @@
+// overview description file for de_zima.bsp
+
+global 
+{
+	ZOOM	1.45
+	ORIGIN -1864.97  -931.07  280.00
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/de_zima.bmp"
+	HEIGHT	0
+}
+
+
+
+

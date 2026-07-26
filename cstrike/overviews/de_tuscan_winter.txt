@@ -1,0 +1,14 @@
+// overview description file for de_tuscan_winter
+
+global 
+{
+	ZOOM	1.57
+	ORIGIN	-188   256    -97
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/de_tuscan_winter.bmp"
+	HEIGHT	-97
+}

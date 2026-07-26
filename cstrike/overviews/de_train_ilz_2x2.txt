@@ -1,0 +1,15 @@
+// overview description file for de_train_ilz_2x2.bsp
+// https://gamebanana.com/maps/152161
+
+global 
+{
+	ZOOM	2.33
+	ORIGIN	430 	1124	-36
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/de_train_ilz_2x2.bmp"
+	HEIGHT	-36
+}

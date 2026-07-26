@@ -1,0 +1,15 @@
+// overview description file for de_pripyat.bsp
+
+global 
+{
+	ZOOM	0.81
+	ORIGIN	-16.50 	176.50	-209
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/de_pripyat.bmp"
+	HEIGHT	-209
+}
+ 

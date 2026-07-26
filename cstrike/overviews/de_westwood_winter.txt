@@ -1,0 +1,14 @@
+// overview description file for de_westwood_winter.bsp
+
+global 
+{
+	ZOOM	2.16
+	ORIGIN	1152	512	-369
+	ROTATED	1
+}
+
+layer 
+{
+	IMAGE	"overviews/de_westwood_winter.bmp"
+	HEIGHT	-369
+}
