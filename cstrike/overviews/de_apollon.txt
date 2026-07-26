@@ -1,0 +1,14 @@
+// overview description file for de_apollon.bsp
+
+global 
+{
+	ZOOM	1.86
+	ORIGIN	-264 	-1663	-614
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/de_apollon.bmp"
+	HEIGHT	-614
+}

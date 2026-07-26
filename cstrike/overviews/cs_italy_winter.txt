@@ -1,0 +1,14 @@
+// overview description file for cs_italy_winter.bsp
+
+global 
+{
+	ZOOM	1.57
+	ORIGIN	-248 	16    -289
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/cs_italy_winter.bmp"
+	HEIGHT	-289
+}
