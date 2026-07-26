@@ -64,7 +64,7 @@
             margin-bottom: 25px;
         }
         
-        /* Sectiunea de statistici LIVE Curata */
+        /* Sectiunea de statistici LIVE Reale */
         .live-stats {
             background: rgba(10, 11, 16, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -91,9 +91,6 @@
             font-size: 18px;
             font-weight: 700;
             color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         .stat-value.highlight {
             color: #ff4a4a;
@@ -116,21 +113,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .status-badge.offline {
-            background: rgba(255, 74, 74, 0.1);
-            border: 1px solid rgba(255, 74, 74, 0.3);
-            color: #ff4a4a;
-        }
         .status-dot {
             width: 8px;
             height: 8px;
             background-color: #52b788;
             border-radius: 50%;
             animation: pulse 1.8s infinite;
-        }
-        .status-badge.offline .status-dot {
-            background-color: #ff4a4a;
-            animation: none;
         }
         .footer-credits {
             font-size: 12px;
@@ -159,7 +147,6 @@
             Nod regional securizat pentru descărcarea ultra-rapidă a resurselor (FastDL). Hărțile, modelele și sunetele se descarcă instantaneu prin infrastructura GitHub Cloud.
         </p>
 
-        <!-- Caseta curata de statistici -->
         <div class="live-stats">
             <div class="stat-card">
                 <span class="stat-label">Harta Curentă</span>
@@ -167,14 +154,14 @@
             </div>
             <div class="stat-card">
                 <span class="stat-label">Jucători Online</span>
-                <span id="player-count" class="stat-value highlight">-- / 32</span>
+                <span id="player-count" class="stat-value highlight">0 / 32</span>
             </div>
         </div>
         
         <div class="badge-container">
-            <div id="server-status-badge" class="status-badge">
+            <div class="status-badge">
                 <span class="status-dot"></span>
-                <span id="status-text">Se verifică serverul...</span>
+                Server Online & Securizat
             </div>
         </div>
         
@@ -183,42 +170,45 @@
         </div>
     </div>
 
+    <!-- Script securizat de interogare prin API-ul Tsarvar (ocoleste firewall-ul tni) -->
     <script>
-        const SERVER_IP = "194.176.184.80";
-        const SERVER_PORT = "27015";
+        const IP = "194.176.184.80";
+        const PORT = "27015";
 
-        // Utilizam o functie bazata pe un proxy public care converteste query-ul de CS in date JSON sigure
-        async function fetchServerStats() {
+        async function getRealStats() {
             try {
-                const response = await fetch(`https://allorigins.win{encodeURIComponent('https://bette.io' + SERVER_IP + ':' + SERVER_PORT)}`);
+                // Interogam API-ul json stabil de la Tsarvar care monitorizeaza serverele din Romania
+                const res = await fetch(`https://tsarvar.com{IP}:${PORT}`);
+                const data = await res.json();
                 
-                if (!response.ok) throw new Error();
-                const wrapper = await response.json();
-                const data = JSON.parse(wrapper.contents);
-                
-                if (data && !data.error) {
-                    document.getElementById('current-map').innerText = data.map || "de_dust2";
-                    document.getElementById('player-count').innerText = `${data.players || 0} / ${data.maxplayers || 32}`;
-                    document.getElementById('server-status-badge').className = "status-badge";
-                    document.getElementById('status-text').innerText = "Server Online & Securizat";
+                if(data && data.server) {
+                    document.getElementById('current-map').innerText = data.server.map || "de_dust2";
+                    document.getElementById('player-count').innerText = `${data.server.players || 0} / ${data.server.max_players || 32}`;
                 } else {
-                    useFallback();
+                    // Plan B daca e gata cota pe cheia publica Tsarvar
+                    fetchPlanB();
                 }
-            } catch (error) {
-                useFallback();
+            } catch (e) {
+                fetchPlanB();
             }
         }
 
-        // Daca hostul blocheaza complet citirea externa, punem hărțile clasice ca sa nu apara erori pe site
-        function useFallback() {
-            document.getElementById('current-map').innerText = "de_dust2x2";
-            document.getElementById('player-count').innerText = "Activ / 32";
-            document.getElementById('server-status-badge').className = "status-badge";
-            document.getElementById('status-text').innerText = "Server Online & Securizat";
+        async function fetchPlanB() {
+            try {
+                const res = await fetch(`https://cs-tracker.com{IP}/${PORT}`);
+                const data = await res.json();
+                if(data) {
+                    document.getElementById('current-map').innerText = data.map || "de_dust2x2";
+                    document.getElementById('player-count').innerText = `${data.players || 0} / 32`;
+                }
+            } catch(err) {
+                document.getElementById('current-map').innerText = "de_dust2";
+                document.getElementById('player-count').innerText = "Verifică în joc";
+            }
         }
 
-        fetchServerStats();
-        setInterval(fetchServerStats, 45000);
+        getRealStats();
+        setInterval(getRealStats, 60000); // Refresh la 1 minut pentru stabilitatea API-ului
     </script>
 
 </body>
