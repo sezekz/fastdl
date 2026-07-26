@@ -70,7 +70,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             padding: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
@@ -117,8 +117,45 @@
             box-shadow: 0 6px 20px rgba(255, 74, 74, 0.5);
             transform: translateY(-2px);
         }
-        .connect-btn:active {
-            transform: translateY(0);
+
+        /* Sectiunea speciala Anti-Cheat */
+        .anticheat-bar {
+            background: rgba(255, 184, 0, 0.03);
+            border: 1px solid rgba(255, 184, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #d1d5db;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .anticheat-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 184, 0, 0.08), transparent);
+            animation: radar-scan 3s infinite linear;
+        }
+        .anticheat-title {
+            color: #ffb800;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            border-right: 1px solid rgba(255, 184, 0, 0.2);
+            padding-right: 10px;
+        }
+        .anticheat-text {
+            color: #a0a5c0;
         }
 
         .badge-container {
@@ -156,10 +193,16 @@
             color: #ff4a4a;
             font-weight: 600;
         }
+        
+        /* Animatii */
         @keyframes pulse {
             0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.7); }
             50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 6px rgba(82, 183, 136, 0); }
             100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(82, 183, 136, 0); }
+        }
+        @keyframes radar-scan {
+            0% { left: -100%; }
+            100% { left: 150%; }
         }
     </style>
 </head>
@@ -177,10 +220,15 @@
                 <span class="stat-label">Mod Server</span>
                 <span class="stat-value">Classic 1.6</span>
             </div>
-            <!-- Butonul de conectare directa -->
             <a href="steam://connect/194.176.184.80:27015" class="connect-btn">
                 Conectează-te
             </a>
+        </div>
+
+        <!-- Bara speciala stilizata pentru Anti-Cheat -->
+        <div class="anticheat-bar">
+            <span class="anticheat-title">🛡️ Shield Active</span>
+            <span class="anticheat-text">Server protejat în timp real împotriva codurilor (Recond/Anti-Cheat System).</span>
         </div>
         
         <div class="badge-container">
