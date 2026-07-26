@@ -64,7 +64,7 @@
             margin-bottom: 25px;
         }
         
-        /* Sectiunea de statistici LIVE Reale */
+        /* Sectiunea Mod Joc si Buton Connect */
         .live-stats {
             background: rgba(10, 11, 16, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -75,6 +75,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             text-align: left;
+            align-items: center;
         }
         .stat-card {
             display: flex;
@@ -92,8 +93,32 @@
             font-weight: 700;
             color: #ffffff;
         }
-        .stat-value.highlight {
-            color: #ff4a4a;
+        
+        /* Stilul Butonului de Connect */
+        .connect-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #ff4a4a;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 74, 74, 0.3);
+            text-align: center;
+        }
+        .connect-btn:hover {
+            background: #ff2b2b;
+            box-shadow: 0 6px 20px rgba(255, 74, 74, 0.5);
+            transform: translateY(-2px);
+        }
+        .connect-btn:active {
+            transform: translateY(0);
         }
 
         .badge-container {
@@ -149,13 +174,13 @@
 
         <div class="live-stats">
             <div class="stat-card">
-                <span class="stat-label">Harta Curentă</span>
-                <span id="current-map" class="stat-value">Se încarcă...</span>
+                <span class="stat-label">Mod Server</span>
+                <span class="stat-value">Classic 1.6</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-label">Jucători Online</span>
-                <span id="player-count" class="stat-value highlight">0 / 32</span>
-            </div>
+            <!-- Butonul de conectare directa -->
+            <a href="steam://connect/194.176.184.80:27015" class="connect-btn">
+                Conectează-te
+            </a>
         </div>
         
         <div class="badge-container">
@@ -169,47 +194,6 @@
             Powered by <span>sezekz</span>
         </div>
     </div>
-
-    <!-- Script securizat de interogare prin API-ul Tsarvar (ocoleste firewall-ul tni) -->
-    <script>
-        const IP = "194.176.184.80";
-        const PORT = "27015";
-
-        async function getRealStats() {
-            try {
-                // Interogam API-ul json stabil de la Tsarvar care monitorizeaza serverele din Romania
-                const res = await fetch(`https://tsarvar.com{IP}:${PORT}`);
-                const data = await res.json();
-                
-                if(data && data.server) {
-                    document.getElementById('current-map').innerText = data.server.map || "de_dust2";
-                    document.getElementById('player-count').innerText = `${data.server.players || 0} / ${data.server.max_players || 32}`;
-                } else {
-                    // Plan B daca e gata cota pe cheia publica Tsarvar
-                    fetchPlanB();
-                }
-            } catch (e) {
-                fetchPlanB();
-            }
-        }
-
-        async function fetchPlanB() {
-            try {
-                const res = await fetch(`https://cs-tracker.com{IP}/${PORT}`);
-                const data = await res.json();
-                if(data) {
-                    document.getElementById('current-map').innerText = data.map || "de_dust2x2";
-                    document.getElementById('player-count').innerText = `${data.players || 0} / 32`;
-                }
-            } catch(err) {
-                document.getElementById('current-map').innerText = "de_dust2";
-                document.getElementById('player-count').innerText = "Verifică în joc";
-            }
-        }
-
-        getRealStats();
-        setInterval(getRealStats, 60000); // Refresh la 1 minut pentru stabilitatea API-ului
-    </script>
 
 </body>
 </html>
